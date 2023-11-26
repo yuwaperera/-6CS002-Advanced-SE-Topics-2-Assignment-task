@@ -320,14 +320,19 @@ public class Main {
                 }
             }
             switch (_$_) {
-                case 5:
-                    int index = (int) (Math.random() * (_Q.stuff.length / 3));
-                    String what = _Q.stuff[index * 3];
-                    String who = _Q.stuff[1 + index * 3];
-                    System.out.printf("%s said \"%s\"", who, what);
-                    System.out.println();
-                    System.out.println();
-                    break;
+            case 5:
+                List<_Q> quotes = _Q.getQuotes();
+                int index = (int) (Math.random() * (quotes.size()));
+                
+                _Q randomQuote = quotes.get(index);
+
+                String who = randomQuote.getAuthor();
+                String what = randomQuote.getQuoteText();
+
+                System.out.printf("%s said \"%s\"", who, what);
+                System.out.println();
+                System.out.println();
+                break;
                 case 0: {
                     if (_d == null) {
                         System.out.println("It is a shame that you did not want to play");
