@@ -4,16 +4,15 @@
  */
 
 public class Domino implements Comparable<Domino> {
-    public int high;
-    public int low;
-    public int hx;
-    public int hy;
-    public int lx;
-    public int ly;
-    public boolean placed = false;
+    private int high;
+    private int low;
+    private int hx;
+    private int hy;
+    private int lx;
+    private int ly;
+    private boolean placed = false;
 
     public Domino(int high, int low) {
-        super();
         this.high = high;
         this.low = low;
     }
@@ -27,29 +26,13 @@ public class Domino implements Comparable<Domino> {
     }
 
     public String toString() {
-        StringBuffer result = new StringBuffer();
-        result.append("[");
-        result.append(Integer.toString(high));
-        result.append(Integer.toString(low));
-        result.append("]");
         if (!placed) {
-            result.append("unplaced");
+            return "[" + high + low + "]" + "unplaced";
         } else {
-            result.append("(");
-            result.append(Integer.toString(hx + 1));
-            result.append(",");
-            result.append(Integer.toString(hy + 1));
-            result.append(")");
-            result.append("(");
-            result.append(Integer.toString(lx + 1));
-            result.append(",");
-            result.append(Integer.toString(ly + 1));
-            result.append(")");
+            return "[" + high + low + "]" + "(" + (hx + 1) + "," + (hy + 1) + ")" + "(" + (lx + 1) + "," + (ly + 1) + ")";
         }
-        return result.toString();
     }
 
-    /** turn the domino around 180 degrees clockwise*/
     public void invert() {
         int tx = hx;
         hx = lx;
@@ -64,10 +47,36 @@ public class Domino implements Comparable<Domino> {
         return hy == ly;
     }
 
-    public int compareTo(Domino arg0) {
-        if (this.high < arg0.high) {
-            return 1;
-        }
-        return this.low - arg0.low;
+    public int compareTo(Domino other) {
+        return Integer.compare(this.high, other.high) == 0 ? Integer.compare(this.low, other.low) : Integer.compare(this.high, other.high);
+    }
+
+    // Getter methods (assuming you have these in your actual implementation)
+    public int getHigh() {
+        return high;
+    }
+
+    public int getLow() {
+        return low;
+    }
+
+    public int getHx() {
+        return hx;
+    }
+
+    public int getHy() {
+        return hy;
+    }
+
+    public int getLx() {
+        return lx;
+    }
+
+    public int getLy() {
+        return ly;
+    }
+
+    public boolean isPlaced() {
+        return placed;
     }
 }
