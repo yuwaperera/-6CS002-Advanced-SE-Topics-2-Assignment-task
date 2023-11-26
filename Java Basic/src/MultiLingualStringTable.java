@@ -1,3 +1,5 @@
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Kevan Buckley, maintained by __student
@@ -12,14 +14,18 @@ public class MultiLingualStringTable {
         this.currentLanguage = language;
     }
    
+    
     private String[] englishMessages = {"Enter your name:", "Welcome", "Have a good time playing Abominodo"};
     private String[] klingonMessages = {"'el lIj pong:", "nuqneH", "QaQ poH Abominodo"};
 
-    public static String getMessage(int index){
-        if(cl == LanguageSetting.English ){
-            return em[index];
-        } else {
-            return km[index];
-        }
+    private Map<LanguageSetting, String[]> messageMap = new HashMap<>();
+    
+    public MultiLingualStringTable() {
+        messageMap.put(LanguageSetting.English, new String[]{"Enter your name:", "Welcome", "Have a good time playing Abominodo"});
+        messageMap.put(LanguageSetting.Klingon, new String[]{"'el lIj pong:", "nuqneH", "QaQ poH Abominodo"});
+    }
+
+    public String getMessage(int index) {
+        return messageMap.get(currentLanguage)[index];
     }
 }
