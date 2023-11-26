@@ -11,8 +11,9 @@ public class MultiLingualStringTable {
     public void setLanguage(LanguageSetting language) {
         this.currentLanguage = language;
     }
-    private static String [] em = {"Enter your name:", "Welcome", "Have a good time playing Abominodo"};
-    private static String [] km = {"'el lIj pong:", "nuqneH", "QaQ poH Abominodo"};
+   
+    private String[] englishMessages = {"Enter your name:", "Welcome", "Have a good time playing Abominodo"};
+    private String[] klingonMessages = {"'el lIj pong:", "nuqneH", "QaQ poH Abominodo"};
 
     public static String getMessage(int index){
         if(cl == LanguageSetting.English ){
