@@ -3,17 +3,13 @@ import java.awt.Graphics;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-/**
- * @author Kevan Buckley, maintained by __student
- * @version 2.0, 2014
- */
-
 public class Location extends SpacePlace {
-    public int c;
-    public int r;
-    public DIRECTION d;
-    public int tmp;
-    public enum DIRECTION {VERTICAL, HORIZONTAL};
+    private int c;
+    private int r;
+    private DIRECTION d;
+    private int tmp;
+
+    public enum DIRECTION { VERTICAL, HORIZONTAL }
 
     public Location(int r, int c) {
         this.r = r;
@@ -25,33 +21,51 @@ public class Location extends SpacePlace {
         this.d = d;
     }
 
+    public int getRow() {
+        return r;
+    }
+
+    public int getColumn() {
+        return c;
+    }
+
+    public DIRECTION getDirection() {
+        return d;
+    }
+
     public String toString() {
         if (d == null) {
             tmp = c + 1;
-            return "(" + (tmp) + "," + (r + 1) + ")";
+            return "(" + tmp + "," + (r + 1) + ")";
         } else {
             tmp = c + 1;
-            return "(" + (tmp) + "," + (r + 1) + "," + d + ")";
+            return "(" + tmp + "," + (r + 1) + "," + d + ")";
         }
     }
 
     public void drawGridLines(Graphics g) {
         g.setColor(Color.LIGHT_GRAY);
+
+        final int startX = 20;
+        final int endX = 180;
+        final int startY = 20;
+        final int endY = 160;
+
         for (tmp = 0; tmp <= 7; tmp++) {
-            g.drawLine(20, 20 + tmp * 20, 180, 20 + tmp * 20);
+            g.drawLine(startX, startY + tmp * 20, endX, startY + tmp * 20);
         }
         for (int see = 0; see <= 8; see++) {
-            g.drawLine(20 + see * 20, 20, 20 + see * 20, 160);
+            g.drawLine(startX + see * 20, startY, startX + see * 20, endY);
         }
     }
 
     public static int getInt() {
         BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
-        do {
+        while (true) {
             try {
                 return Integer.parseInt(r.readLine());
             } catch (Exception e) {
             }
-        } while (true);
+        }
     }
 }
