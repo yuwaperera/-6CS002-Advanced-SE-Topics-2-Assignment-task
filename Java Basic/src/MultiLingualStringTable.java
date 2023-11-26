@@ -6,7 +6,11 @@
 
 public class MultiLingualStringTable {
     private enum LanguageSetting {English, Klingon}
-    private static LanguageSetting cl = LanguageSetting.English;
+    private LanguageSetting currentLanguage = LanguageSetting.English;
+
+    public void setLanguage(LanguageSetting language) {
+        this.currentLanguage = language;
+    }
     private static String [] em = {"Enter your name:", "Welcome", "Have a good time playing Abominodo"};
     private static String [] km = {"'el lIj pong:", "nuqneH", "QaQ poH Abominodo"};
 
